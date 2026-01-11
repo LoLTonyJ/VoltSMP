@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="VoltPlugin:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/VoltPlugin_jar</output-path>
+    <root id="archive" name="VoltPlugin.jar">
+      <element id="module-output" name="VoltPlugin" />
+    </root>
+  </artifact>
+</component>
