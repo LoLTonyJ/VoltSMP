@@ -15,6 +15,8 @@ public final class Main extends JavaPlugin {
         saveDefaultConfig();
 
         System.out.println("VOLTSMP Main Plugin has been started. " + version);
+        System.out.println("");
+        System.out.println("If there is anything wrong with the loading param please contact Ghostinq on Discord.");
 
     }
 
