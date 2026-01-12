@@ -3,5 +3,13 @@
 version: "v1.0.0"
 
 
-
+# Basic Configuration Inputs.
 prefix: "&7[Prefix]"
+
+
+
+
+# Player Obtainable Ranks Section
+
+Traveler:
+  Blocks: "15000"
