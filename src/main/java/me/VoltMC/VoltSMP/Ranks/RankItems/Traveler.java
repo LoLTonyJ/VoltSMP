@@ -16,7 +16,7 @@ public class Traveler {
 
         // Param @p will be used once config files are running smoothly. Until then, it is a placeholder for future inputs.
 
-        Integer blocks = Main.getInstance().getConfig().getInt("Traveler.Blocks");
+        String blocks = Main.getInstance().getConfig().getString("Traveler.Blocks");
 
         ItemStack item = new ItemStack(Material.COMPASS);
         ItemMeta meta = item.getItemMeta();
