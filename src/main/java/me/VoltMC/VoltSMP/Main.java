@@ -29,9 +29,14 @@ public final class Main extends JavaPlugin {
         // Player Data File Load.
         PlaytimeData.loadPlayerTimes();
 
+        this.getLogger().log(Level.INFO, "Player Data has loaded successfully.");
+
         // File Loads.
         try {
             PlaytimeData.Load();
+
+
+            this.getLogger().log(Level.INFO, "File Data has loaded successfully.");
         } catch (IOException | InvalidConfigurationException e) {
             throw new RuntimeException(e);
         }
