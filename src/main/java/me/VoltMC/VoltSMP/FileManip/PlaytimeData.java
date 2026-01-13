@@ -1,5 +1,7 @@
 package me.VoltMC.VoltSMP.FileManip;
 
+import me.VoltMC.VoltSMP.Commands.Playtime;
+import me.VoltMC.VoltSMP.Functions.playtimeEvents;
 import me.VoltMC.VoltSMP.Main;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -8,6 +10,7 @@ import org.bukkit.entity.Player;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.UUID;
 
 public class PlaytimeData {
 
@@ -23,7 +26,12 @@ public class PlaytimeData {
         if (config.get(players + "." + p.getUniqueId()) == null) {
             config.set(players + "." + p.getUniqueId() + ".Time", time); // Inits Player(s) Time.
         }
+    }
 
+    public static void savePlayerTime(Player p, Integer time) {
+        ConfigurationSection players = config.getConfigurationSection("players");
+        players.set(p.getUniqueId() + ".Time", time);
+        Save();
     }
 
     public static void Save() {
@@ -33,6 +41,16 @@ public class PlaytimeData {
             config.save(file);
         }catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    // this may or may not work, who knows....
+    public static void loadPlayerTimes() {
+        if (config.getConfigurationSection("players") != null) {
+            for (String pUUID : config.getConfigurationSection("players").getKeys(false)) {
+                int playerTime = config.getInt("players." + pUUID + ".Time");
+                playtimeEvents.playtimeTemp.put(UUID.fromString(pUUID), playerTime);
+            }
         }
     }
 
