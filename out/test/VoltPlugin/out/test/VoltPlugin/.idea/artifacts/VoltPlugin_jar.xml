@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="VoltPlugin:jar">
+    <output-path>$USER_HOME$/Desktop/MCPlugins</output-path>
+    <root id="archive" name="VoltPlugin.jar">
+      <element id="module-output" name="VoltPlugin" />
+    </root>
+  </artifact>
+</component>
