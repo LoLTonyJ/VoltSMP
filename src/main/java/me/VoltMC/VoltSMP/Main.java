@@ -1,7 +1,9 @@
 package me.VoltMC.VoltSMP;
 
+import me.VoltMC.VoltSMP.Commands.Playtime;
 import me.VoltMC.VoltSMP.Commands.RankGUI;
 import me.VoltMC.VoltSMP.FileManip.PlaytimeData;
+import me.VoltMC.VoltSMP.Functions.playtimeEvents;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -20,6 +22,13 @@ public final class Main extends JavaPlugin {
         getConfig().options().copyDefaults();
         saveDefaultConfig();
 
+        // Events.
+        getServer().getPluginManager().registerEvents(new playtimeEvents(), this);
+
+
+        // Player Data File Load.
+        PlaytimeData.loadPlayerTimes();
+
         // File Loads.
         try {
             PlaytimeData.Load();
@@ -28,6 +37,7 @@ public final class Main extends JavaPlugin {
         }
 
         getCommand("testgui").setExecutor(new RankGUI());
+        getCommand("playtime").setExecutor(new Playtime());
 
         this.getLogger().log(Level.INFO, "VoltSMP Main Plugin has been started. " + version);
         this.getLogger().log(Level.INFO, " ");
@@ -37,6 +47,10 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onDisable() {
+    }
+
+    public String getPrefix() {
+        return getInstance().getConfig().getString("prefix");
     }
 
     public static Main getInstance() {
