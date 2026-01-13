@@ -7,3 +7,9 @@ api-version: '1.21'
 commands:
   testgui:
     description: "testing"
+  playtime:
+    description: "Display Total Playtime on the Server"
+    aliases:
+      - pt
+      - playt
+      - time
