@@ -5,6 +5,11 @@ api-version: '1.21'
 
 
 commands:
+  voltadmin:
+    description: "General Admin Commands for VoltSMP"
+    aliases:
+      - va
+      - volta
   testgui:
     description: "testing"
   playtime:
