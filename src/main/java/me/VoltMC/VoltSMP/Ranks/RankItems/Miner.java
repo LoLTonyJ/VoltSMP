@@ -15,8 +15,6 @@ public class Miner {
 
        String blockGoal = Main.getInstance().getConfig().getString("Miner.Blocks");
 
-       // test commit init
-
         ItemStack item = new ItemStack(Material.DIAMOND_PICKAXE);
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(ChatColor.format("&bMiner Rank"));
