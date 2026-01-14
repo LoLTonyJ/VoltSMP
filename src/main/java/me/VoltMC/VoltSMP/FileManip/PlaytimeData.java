@@ -34,16 +34,6 @@ public class PlaytimeData {
         Save();
     }
 
-    public static void Save() {
-        file = new File(Main.getInstance().getDataFolder(), "PlayerData/Playtime.yml");
-
-        try {
-            config.save(file);
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     // this may or may not work, who knows....
     public static void loadPlayerTimes() {
         if (config.getConfigurationSection("players") != null) {
@@ -51,6 +41,16 @@ public class PlaytimeData {
                 int playerTime = config.getInt("players." + pUUID + ".Time");
                 playtimeEvents.playtimeTemp.put(UUID.fromString(pUUID), playerTime);
             }
+        }
+    }
+
+    public static void Save() {
+        file = new File(Main.getInstance().getDataFolder(), "PlayerData/Playtime.yml");
+
+        try {
+            config.save(file);
+        }catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
