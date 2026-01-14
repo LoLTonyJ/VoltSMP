@@ -26,17 +26,26 @@ public class TravelerTrack {
 
         ConfigurationSection sect = config.getConfigurationSection("players");
         if (sect == null) {
-            Main.getInstance().getLogger().log(Level.SEVERE, "Block Tracker is returning NULL! Contact Ghostinq on Discord!");
+            Main.getInstance().getLogger().log(Level.SEVERE, "Block Tracker is returning NULL! Contact Ghostinq on Discord! (Traveler)");
             return;
         }
 
         if (sect.get(p.getUniqueId().toString()) == null) {
             sect.set(p.getUniqueId() + ".Blocks", 0);
+            sect.set(p.getUniqueId() + ".Tier", 0);
         }
     }
 
     public static Integer getPlayerBlock(Player p) {
         return config.getInt("players." + p.getUniqueId() + ".Blocks");
+    }
+
+    public static String getString(String path) {
+        return config.getString(path);
+    }
+
+    public static Integer getInt(String path) {
+        return config.getInt(path);
     }
 
     public static void Save() {
