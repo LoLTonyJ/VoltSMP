@@ -36,6 +36,11 @@ public class TravelerTrack {
         }
     }
 
+    public static void addTier(Player p, Integer tier) {
+        int currentTier = config.getInt("players." + p.getUniqueId() + ".Tier");
+        config.set("players." + p.getUniqueId() + ".Tier", tier);
+    }
+
     public static Integer getPlayerBlock(Player p) {
         return config.getInt("players." + p.getUniqueId() + ".Blocks");
     }
