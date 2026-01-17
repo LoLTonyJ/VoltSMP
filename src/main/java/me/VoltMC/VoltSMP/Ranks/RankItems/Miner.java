@@ -1,9 +1,11 @@
 package me.VoltMC.VoltSMP.Ranks.RankItems;
 
+import me.VoltMC.VoltSMP.FileManip.RankTracking.MinerTrack;
 import me.VoltMC.VoltSMP.Main;
 import me.VoltMC.VoltSMP.Util.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -22,7 +24,12 @@ public class Miner {
         lore.add(" ");
         lore.add(ChatColor.format("&bObtainable by;"));
         lore.add(ChatColor.format("&7- Mining " + blockGoal + " Blocks"));
-
+        lore.add(" ");
+        lore.add(ChatColor.format("&aYou have mined " + MinerTrack.getPlayerBlock(p) + " Blocks!"));
+        lore.add(" ");
+        meta.setLore(lore);
+        meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+        item.setItemMeta(meta);
         return item;
     }
 
