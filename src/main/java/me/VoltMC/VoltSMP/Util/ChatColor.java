@@ -6,4 +6,8 @@ public class ChatColor {
         return org.bukkit.ChatColor.translateAlternateColorCodes('&', s);
     }
 
+    public static String strip(String s) {
+        return org.bukkit.ChatColor.stripColor(s);
+    }
+
 }
