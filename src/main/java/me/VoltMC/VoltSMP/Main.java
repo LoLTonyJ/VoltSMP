@@ -4,13 +4,16 @@ import me.VoltMC.VoltSMP.Commands.AdminCommands;
 import me.VoltMC.VoltSMP.Commands.Playtime;
 import me.VoltMC.VoltSMP.Commands.RankGUI;
 import me.VoltMC.VoltSMP.FileManip.PlaytimeData;
+import me.VoltMC.VoltSMP.FileManip.RankRewards.TravelRewards;
 import me.VoltMC.VoltSMP.FileManip.RankTracking.MinerTrack;
 import me.VoltMC.VoltSMP.FileManip.RankTracking.TravelerTrack;
 import me.VoltMC.VoltSMP.Functions.playtimeEvents;
+import me.VoltMC.VoltSMP.Ranks.GUIEvents.RankAquireClick;
 import me.VoltMC.VoltSMP.Ranks.GoalEvents.Miner;
 import me.VoltMC.VoltSMP.Ranks.GoalEvents.Traveler;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
+import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.plugin.RegisteredServiceProvider;
@@ -23,9 +26,17 @@ public final class Main extends JavaPlugin {
 
     private static Main instance;
     private LuckPerms luckPerms;
+    private static Economy econ;
 
     @Override
     public void onEnable() {
+
+        if (!setupEconomy()) {
+            getLogger().severe(String.format("[%s] - Disabled due to no Vault dependency found!", getDescription().getName()));
+            getServer().getPluginManager().disablePlugin(this);
+            return;
+        }
+
         String version = this.getConfig().getString("version");
         instance = this;
 
@@ -39,12 +50,14 @@ public final class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new playtimeEvents(), this);
         getServer().getPluginManager().registerEvents(new Traveler(), this );
         getServer().getPluginManager().registerEvents(new Miner(), this);
+        getServer().getPluginManager().registerEvents(new RankAquireClick(), this);
 
         // File Loads.
         try {
             PlaytimeData.Load();
             TravelerTrack.Load();
             MinerTrack.Load();
+            TravelRewards.Load();
             this.getLogger().log(Level.INFO, "File Data has loaded successfully.");
         } catch (IOException | InvalidConfigurationException e) {
             throw new RuntimeException(e);
@@ -72,6 +85,21 @@ public final class Main extends JavaPlugin {
         MinerTrack.Save();
     }
 
+    private boolean setupEconomy() {
+        if (getServer().getPluginManager().getPlugin("Vault") == null) {
+            return false;
+        }
+        RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
+        if (rsp == null) {
+            return false;
+        }
+        econ = rsp.getProvider();
+        return econ != null;
+    }
+
+    public static Economy getEconomy() {
+        return econ;
+    }
 
     public LuckPerms luckAPI() {
         return luckPerms;
