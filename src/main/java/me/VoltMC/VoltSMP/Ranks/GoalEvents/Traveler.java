@@ -48,6 +48,7 @@ public class Traveler implements Listener {
                 blockTracker.remove(p.getUniqueId());
                 blockTracker.put(p.getUniqueId(), blockNum + 1);
                 TravelerTrack.editPlayerBlocks(p, getBlocks(p));
+                TravelerTrack.Save();
                 return;
             }
         }
@@ -65,7 +66,6 @@ public class Traveler implements Listener {
     @EventHandler
     public void onPlayerLeave(PlayerQuitEvent e) {
         Player p = e.getPlayer();
-        TravelerTrack.editPlayerBlocks(p, getBlocks(p));
         if (!noSpam.contains(p.getUniqueId())) return;
         noSpam.remove(p.getUniqueId());
     }
