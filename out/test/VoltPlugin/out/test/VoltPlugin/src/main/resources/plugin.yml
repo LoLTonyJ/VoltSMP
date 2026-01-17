@@ -1,9 +1,0 @@
-name: VOLTSMP
-version: '1.0-SNAPSHOT'
-main: me.VoltMC.VoltSMP.Main
-api-version: '1.21'
-
-
-commands:
-  testgui:
-    description: "testing"
