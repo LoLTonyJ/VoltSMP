@@ -6,6 +6,16 @@ prefix: "&7[Prefix]"
 
 # Player Obtainable Ranks Section
 
+# This will set the players rank if they click to gain their rewards
+# This is experimental and may cause bugs. Disable if their rank appears to be bugged.
+set_player_rank: true
+
+
+# Gamer goal is calculated in Seconds.
+# 250k Seconds is 69 hrs (nice)
+Gamer:
+  Time: "250000"
+
 Traveler:
   Blocks: "15000"
 Miner:
