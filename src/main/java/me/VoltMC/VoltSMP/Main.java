@@ -1,20 +1,19 @@
 package me.VoltMC.VoltSMP;
 
 import me.VoltMC.VoltSMP.Commands.AdminCommands;
-import me.VoltMC.VoltSMP.Commands.Playtime;
+import me.VoltMC.VoltSMP.Commands.PlaytimeCommand;
 import me.VoltMC.VoltSMP.Commands.RankGUI;
 import me.VoltMC.VoltSMP.FileManip.PlaytimeData;
 import me.VoltMC.VoltSMP.FileManip.RankRewards.TravelRewards;
 import me.VoltMC.VoltSMP.FileManip.RankTracking.MinerTrack;
 import me.VoltMC.VoltSMP.FileManip.RankTracking.TravelerTrack;
-import me.VoltMC.VoltSMP.Functions.playtimeEvents;
 import me.VoltMC.VoltSMP.Ranks.GUIEvents.RankAquireClick;
 import me.VoltMC.VoltSMP.Ranks.GoalEvents.Miner;
+import me.VoltMC.VoltSMP.Ranks.GoalEvents.Playtime;
 import me.VoltMC.VoltSMP.Ranks.GoalEvents.Traveler;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
 import net.milkbowl.vault.economy.Economy;
-import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -37,6 +36,7 @@ public final class Main extends JavaPlugin {
             return;
         }
 
+
         String version = this.getConfig().getString("version");
         instance = this;
 
@@ -47,10 +47,10 @@ public final class Main extends JavaPlugin {
         saveDefaultConfig();
 
         // Events.
-        getServer().getPluginManager().registerEvents(new playtimeEvents(), this);
         getServer().getPluginManager().registerEvents(new Traveler(), this );
         getServer().getPluginManager().registerEvents(new Miner(), this);
         getServer().getPluginManager().registerEvents(new RankAquireClick(), this);
+        getServer().getPluginManager().registerEvents(new Playtime(), this);
 
         // File Loads.
         try {
@@ -64,7 +64,7 @@ public final class Main extends JavaPlugin {
         }
 
         getCommand("testgui").setExecutor(new RankGUI());
-        getCommand("playtime").setExecutor(new Playtime());
+        getCommand("playtime").setExecutor(new PlaytimeCommand());
         getCommand("voltadmin").setExecutor(new AdminCommands());
 
 
@@ -76,6 +76,8 @@ public final class Main extends JavaPlugin {
         this.getLogger().log(Level.INFO, " ");
         this.getLogger().log(Level.INFO, "If there is anything wrong with the loading param please contact Ghostinq on Discord.");
 
+        // Runnables
+        Playtime.TrackPlaytime();
     }
 
     @Override
