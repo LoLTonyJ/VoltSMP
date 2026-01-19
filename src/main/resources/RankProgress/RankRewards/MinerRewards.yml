@@ -1,1 +1,4 @@
-players: {}
+miner_tier_1:
+  Diamonds: 32
+  Money: 1500
+  cooked_beef: 32
