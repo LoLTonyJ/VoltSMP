@@ -1,7 +1,5 @@
 package me.VoltMC.VoltSMP.FileManip;
 
-import me.VoltMC.VoltSMP.Commands.Playtime;
-import me.VoltMC.VoltSMP.Functions.playtimeEvents;
 import me.VoltMC.VoltSMP.Main;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -39,7 +37,7 @@ public class PlaytimeData {
         if (config.getConfigurationSection("players") != null) {
             for (String pUUID : config.getConfigurationSection("players").getKeys(false)) {
                 int playerTime = config.getInt("players." + pUUID + ".Time");
-                playtimeEvents.playtimeTemp.put(UUID.fromString(pUUID), playerTime);
+               // playtimeEvents.playtimeTemp.put(UUID.fromString(pUUID), playerTime);
             }
         }
     }
