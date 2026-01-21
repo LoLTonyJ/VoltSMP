@@ -15,14 +15,21 @@ public class PlaytimeData {
     private static File file;
     private static YamlConfiguration config;
 
+
+
     public static Integer getPlayerTime(Player p) {
         return config.getInt("players." + p.getUniqueId() + ".Time");
+    }
+
+    public static Integer getPlayerTier(Player p) {
+        return config.getInt("players." + p.getUniqueId() + ".Tier");
     }
 
     public static void initPlayerTime(Player p, Integer time) { // New Players.
         ConfigurationSection players = config.getConfigurationSection("players");
         if (config.get(players + "." + p.getUniqueId()) == null) {
             config.set(players + "." + p.getUniqueId() + ".Time", time); // Inits Player(s) Time.
+            config.set(players + "." + p.getUniqueId() + ".Tier", 0);
         }
     }
 
