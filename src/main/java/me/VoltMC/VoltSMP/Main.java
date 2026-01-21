@@ -4,6 +4,7 @@ import me.VoltMC.VoltSMP.Commands.AdminCommands;
 import me.VoltMC.VoltSMP.Commands.PlaytimeCommand;
 import me.VoltMC.VoltSMP.Commands.RankGUI;
 import me.VoltMC.VoltSMP.FileManip.PlaytimeData;
+import me.VoltMC.VoltSMP.FileManip.RankRewards.MinerRewards;
 import me.VoltMC.VoltSMP.FileManip.RankRewards.TravelRewards;
 import me.VoltMC.VoltSMP.FileManip.RankTracking.MinerTrack;
 import me.VoltMC.VoltSMP.FileManip.RankTracking.TravelerTrack;
@@ -58,6 +59,7 @@ public final class Main extends JavaPlugin {
             TravelerTrack.Load();
             MinerTrack.Load();
             TravelRewards.Load();
+            MinerRewards.Load();
             this.getLogger().log(Level.INFO, "File Data has loaded successfully.");
         } catch (IOException | InvalidConfigurationException e) {
             throw new RuntimeException(e);
