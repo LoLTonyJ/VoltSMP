@@ -15,6 +15,10 @@ public class MinerTrack {
     private static File file;
     private static YamlConfiguration config;
 
+    public static Integer getTier(Player p) {
+        return config.getInt("players." + p.getUniqueId() + ".Tier");
+    }
+
     public static void addTier(Player p, Integer tier) {
         int currentTier = config.getInt("players." + p.getUniqueId() + ".Tier");
         config.set("players." + p.getUniqueId() + ".Tier", tier);
