@@ -24,6 +24,10 @@ public class TravelRewards {
         p.sendMessage(ChatColor.format("&7You have been given &a$" + amount));
     }
 
+    public static String getString(String path) {
+        return config.getString(path);
+    }
+
     public static Integer getRewardAmount(String path) {
         if (path == null) return 0;
         return config.getInt(path);
