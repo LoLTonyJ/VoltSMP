@@ -1,5 +1,6 @@
 package me.VoltMC.VoltSMP.Ranks.RankItems;
 
+import me.VoltMC.VoltSMP.FileManip.RankRewards.MinerRewards;
 import me.VoltMC.VoltSMP.FileManip.RankTracking.MinerTrack;
 import me.VoltMC.VoltSMP.Main;
 import me.VoltMC.VoltSMP.Util.ChatColor;
@@ -15,11 +16,12 @@ public class Miner {
 
     public static ItemStack minerItem(Player p) {
 
-       String blockGoal = Main.getInstance().getConfig().getString("Miner.Blocks");
+     // Miner . Tier_1/2/3 . Blocks.
+       String blockGoal = Main.getInstance().getConfig().getString("Miner.Tier_" + MinerTrack.getTier(p) + ".Blocks");
 
         ItemStack item = new ItemStack(Material.DIAMOND_PICKAXE);
         ItemMeta meta = item.getItemMeta();
-        meta.setDisplayName(ChatColor.format("&bMiner Rank"));
+        meta.setDisplayName(ChatColor.format("&bMiner Rewards"));
         ArrayList<String> lore = new ArrayList<>();
         lore.add(" ");
         lore.add(ChatColor.format("&bObtainable by;"));
