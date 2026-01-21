@@ -1,0 +1,22 @@
+name: VOLTSMP
+version: '1.0-SNAPSHOT'
+main: me.VoltMC.VoltSMP.Main
+api-version: '1.21'
+depend:
+  - Vault
+
+
+commands:
+  voltadmin:
+    description: "General Admin Commands for VoltSMP"
+    aliases:
+      - va
+      - volta
+  testgui:
+    description: "testing"
+  playtime:
+    description: "Display Total Playtime on the Server"
+    aliases:
+      - pt
+      - playt
+      - time
