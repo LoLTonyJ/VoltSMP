@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashMap;
@@ -18,6 +19,11 @@ public class Playtime implements Listener {
 
     public static Integer playerPlaytime(Player p) {
         return playtimeTracker.get(p);
+    }
+
+    public static boolean isAFK(Player p) {
+        Location pLoc = p.getLocation();
+        return (afkTracker.get(p) == pLoc);
     }
 
     public static void editPlayerTime(Player p, Integer time) {
@@ -34,11 +40,21 @@ public class Playtime implements Listener {
                 for (Player p : playtimeTracker.keySet()) {
                     if (p == null) return;
                     if (playtimeTracker.get(p) == null) return;
+                    afkTracker.put(p, p.getLocation());
+                    if (isAFK(p)) {
+                        System.out.println(p.getName() + " is AFK, stopping playtime tracker for this player.");
+                        return;
+                    }
                     int currentTime = playtimeTracker.get(p);
                     editPlayerTime(p, currentTime);
                 }
             }
         }.runTaskTimerAsynchronously(Main.getInstance(), 0L, 20L);
+    }
+
+    @EventHandler
+    public void onLeave(PlayerQuitEvent e) {
+        PlaytimeData.savePlayerTime(e.getPlayer(), playerPlaytime(e.getPlayer()));
     }
 
     @EventHandler
