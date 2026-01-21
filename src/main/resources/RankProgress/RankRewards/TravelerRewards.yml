@@ -1,3 +1,15 @@
+# This is the traveler reward configuration file.
+# You can add more tiers, or remove some.
+# Here is a couple of keys you can use for certain rewards;
+
+# If you want to add a permission to a players rank you would do;
+# Permission: "test.permission"
+# If you want to add Money to a players bank you would do;
+# Money: 5000
+# If you want to give a player a rank you would do;
+# Rank: "rank_name"
+
+
 traveler_tier_1:
   Diamond: 32
   Money: 4000
