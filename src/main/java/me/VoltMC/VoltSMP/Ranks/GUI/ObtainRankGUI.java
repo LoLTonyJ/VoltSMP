@@ -1,5 +1,6 @@
 package me.VoltMC.VoltSMP.Ranks.GUI;
 
+import me.VoltMC.VoltSMP.Ranks.RankItems.Gamer;
 import me.VoltMC.VoltSMP.Ranks.RankItems.Miner;
 import me.VoltMC.VoltSMP.Ranks.RankItems.Traveler;
 import me.VoltMC.VoltSMP.Util.Filler;
@@ -17,7 +18,7 @@ public class ObtainRankGUI {
     // For loops will be turned down once things are set in stone, until then it is easier.
 
     public static Inventory RankGUI(Player p) {
-        Inventory inv = Bukkit.createInventory(null, 9*6, ChatColor.AQUA + "Obtainable Ranks"); // bing bong.
+        Inventory inv = Bukkit.createInventory(null, 9*6, ChatColor.AQUA + "Obtainable Rewards"); // bing bong.
 
         // Filler Item
         int[] filler = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 17, 18, 26, 27, 35, 36, 44, 45, 46, 47 ,48, 49, 50, 51, 52, 53}; // Blah blah numbers, numbers.
@@ -27,8 +28,9 @@ public class ObtainRankGUI {
             }
         }
 
-        inv.setItem(11, Traveler.travelItem(p));
-        inv.setItem(12, Miner.minerItem(p));
+        inv.setItem(11, Traveler.travelItem(p)); // Travel Item
+        inv.setItem(12, Miner.minerItem(p)); // Miner Item
+        inv.setItem(13, Gamer.gamerItem(p)); // Gamer Item
 
         p.openInventory(inv);
         return inv;
