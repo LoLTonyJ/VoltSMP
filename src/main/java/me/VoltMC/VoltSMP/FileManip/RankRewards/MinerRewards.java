@@ -28,6 +28,10 @@ public class MinerRewards {
         return config.getInt(path);
     }
 
+    public static String getString(String path) {
+        return config.getString(path);
+    }
+
     public static List<String> getList(Integer Tier) {
         ConfigurationSection rewardSection = config.getConfigurationSection("miner_tier_" + Tier);
         if (rewardSection == null) {
