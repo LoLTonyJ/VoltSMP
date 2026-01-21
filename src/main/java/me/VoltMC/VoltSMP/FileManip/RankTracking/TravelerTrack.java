@@ -15,6 +15,10 @@ public class TravelerTrack {
     private static File file;
     private static YamlConfiguration config;
 
+    public static Integer getTier(Player p) {
+        return config.getInt("players." + p.getUniqueId() + ".Tier");
+    }
+
     public static void editPlayerBlocks(Player p, Integer blockNum) {
         if (config.get("players." + p.getUniqueId()) != null) {
             config.set("players." + p.getUniqueId() + ".Blocks", blockNum);
