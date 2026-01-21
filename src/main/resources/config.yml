@@ -1,4 +1,4 @@
-# This is the plugin Version, do not touch!
+# This is the Plugin Version, do not touch!
 version: "v1.0.0"
 
 # Basic Configuration Inputs.
@@ -13,10 +13,24 @@ set_player_rank: true
 
 # Gamer goal is calculated in Seconds.
 # 250k Seconds is 69 hrs (nice)
-Gamer:
-  Time: "250000"
-
-Traveler:
-  Blocks: "15000"
-Miner:
-  Blocks: "5000"
+gamer:
+  tier_1:
+    time: "250000"
+  tier_2:
+    time: "450000"
+  tier_3:
+    time: "650000"
+traveler:
+  tier_1:
+    blocks: "3000"
+  tier_2:
+    blocks: "5200"
+  tier_3:
+    blocks: "8200"
+miner:
+  tier_1:
+    blocks: "1200"
+  tier_2:
+    blocks: "3200"
+  tier_3:
+    blocks: "6300"
